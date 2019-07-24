@@ -1,4 +1,5 @@
 export const ADD_TASK = "ADD_TASK";
+export const TOGGLE_TASK = "TOGGLE_TASK";
 
 export const initialState = {
 	tasks: [
@@ -22,7 +23,21 @@ export const reducer = (state, action) => {
 				...state,
 				tasks: [...state.tasks, newTask]
 			};
-			
+
+			case TOGGLE_TASK:
+				return {
+					...state,
+					tasks: state.tasks.map(task => {
+						if(action.payload === task.id) {
+							return {
+								...task,
+								completed: !task.completed
+							};
+						}
+						return task;
+					})
+				};
+
 		default:
 			return state;
 	}

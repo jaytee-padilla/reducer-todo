@@ -6,7 +6,7 @@ import TodoList from './components/TodoList';
 import TodoForm from './components/TodoForm';
 
 // reducers
-import { reducer, initialState, ADD_TASK } from './reducers/reducer';
+import { reducer, initialState, ADD_TASK, TOGGLE_TASK } from './reducers/reducer';
 
 function App() {
 	const [state, dispatch] = useReducer(reducer, initialState);
@@ -14,14 +14,18 @@ function App() {
 	const addItem = (event, task) => {
 		event.preventDefault();
 
-		dispatch({ type: ADD_TASK, payload: task})
+		dispatch({ type: ADD_TASK, payload: task});
+	}
+
+	const toggleTask = (task) => {
+		dispatch({type: TOGGLE_TASK, payload: task.id});
 	}
 
   return (
     <div className="App">
 			<h1>Todo List</h1>
 			<TodoForm addItem={addItem} />
-			<TodoList tasks={state.tasks} />
+			<TodoList tasks={state.tasks} toggleTask={toggleTask} />
     </div>
   );
 }
