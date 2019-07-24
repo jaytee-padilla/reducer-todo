@@ -1,5 +1,6 @@
 export const ADD_TASK = "ADD_TASK";
 export const TOGGLE_TASK = "TOGGLE_TASK";
+export const CLEAR_COMPLETED = "CLEAR_COMPLETED";
 
 export const initialState = {
 	tasks: [
@@ -37,6 +38,12 @@ export const reducer = (state, action) => {
 						return task;
 					})
 				};
+
+				case CLEAR_COMPLETED:
+					return {
+						...state,
+						tasks: state.tasks.filter(task => task.completed === false)
+					};
 
 		default:
 			return state;

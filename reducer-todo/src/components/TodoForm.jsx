@@ -26,6 +26,8 @@ export default function TodoForm(props) {
 				/>
 				<button>Add Todo</button>
 			</form>
+
+			<button onClick={props.clearCompleted}>Clear Completed</button>
 		</div>
 	)
 }
