@@ -6,15 +6,15 @@ import TodoList from './components/TodoList';
 import TodoForm from './components/TodoForm';
 
 // reducers
-import { reducer, initialState } from './reducers/reducer';
+import { reducer, initialState, ADD_TASK } from './reducers/reducer';
 
 function App() {
 	const [state, dispatch] = useReducer(reducer, initialState);
 
-	const addItem = (event) => {
+	const addItem = (event, task) => {
 		event.preventDefault();
 
-		console.log("addItem function triggered");
+		dispatch({ type: ADD_TASK, payload: task})
 	}
 
   return (
